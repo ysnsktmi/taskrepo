@@ -1,0 +1,27 @@
+{
+  "name": "taskrepo",
+  "version": "0.0.1",
+  "description": "my taskrepo",
+  "main": "index.js",
+  "scripts": {
+    "test": "testit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ysnsktmi/taskrepo.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ysnsktmi/taskrepo/issues"
+  },
+  "homepage": "https://github.com/ysnsktmi/taskrepo",
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-htmlhint": "0.0.9",
+    "gulp-jshint": "^1.9.2",
+    "gulp-notify": "^2.2.0",
+    "gulp-plumber": "^1.0.0",
+    "gulp-webserver": "^0.9.0"
+  }
+}
