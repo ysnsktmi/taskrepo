@@ -4,7 +4,9 @@ var plumber=require('gulp-plumber');
 var notify=require('gulp-notify');
 var htmlhint=require("gulp-htmlhint");
 var webserver=require('gulp-webserver');
-
+var sass=require('gulp-sass');
+var csscomb=require('gulp-csscomb');
+var csslint=require('gulp-csslint');
 
 var config={
   path:{
@@ -25,6 +27,7 @@ gulp.task('live',['serve','watch']);
 gulp.task('watch',function(){
   gulp.watch(config.path.src+'*.js',['jshint']);
   gulp.watch(config.path.src+'*.html',['hthint']);
+  gulp.watch(config.path.src+'*.scss',['sass']);
 });
 
 gulp.task('hthint',function(){
@@ -34,7 +37,7 @@ gulp.task('hthint',function(){
           }))
       .pipe(htmlhint('htmllintrc.json'))
       .pipe(htmlhint.reporter())
-      .pipe(htmlhint.failReporter())
+      // .pipe(htmlhint.failReporter())
 });
 gulp.task('jshint',function(){
   return gulp.src([config.path.src+'/*.js',config.ignore.modules])
@@ -44,6 +47,17 @@ gulp.task('jshint',function(){
       .pipe(jshint())
       .pipe(jshint.reporter('default'))
       .pipe(jshint.reporter('fail'));
+});
+gulp.task('sass',function(){
+  return gulp.src(config.path.src+'/*.scss')
+      .pipe(plumber({
+            errorHandler: notify.onError("CSS error: <%= error.message %>")
+          }))
+      .pipe(sass())
+      .pipe(csscomb())
+      .pipe(csslint('csslintrc.json'))
+      .pipe(csslint.reporter())
+      .pipe(gulp.dest(config.path.src));
 });
 gulp.task('serve',function(){
   gulp.src(config.path.src)

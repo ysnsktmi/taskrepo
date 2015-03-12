@@ -16,12 +16,19 @@
     "url": "https://github.com/ysnsktmi/taskrepo/issues"
   },
   "homepage": "https://github.com/ysnsktmi/taskrepo",
+  "bookmark":"http://nulab-inc.com/ja/blog/nulab/knockout-1/",
   "devDependencies": {
     "gulp": "^3.8.11",
+    "gulp-csscomb": "^3.0.3",
+    "gulp-csslint": "^0.1.5",
     "gulp-htmlhint": "0.0.9",
     "gulp-jshint": "^1.9.2",
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.0",
+    "gulp-sass": "^1.3.3",
     "gulp-webserver": "^0.9.0"
+  },
+  "dependencies": {
+    "normalize.css": "^3.0.2"
   }
 }
