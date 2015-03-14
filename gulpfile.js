@@ -1,7 +1,9 @@
 var gulp=require('gulp');
-var jshint=require('gulp-jshint');
 var plumber=require('gulp-plumber');
 var notify=require('gulp-notify');
+var cache=require('gulp-cached');
+
+var jshint=require('gulp-jshint');
 var htmlhint=require("gulp-htmlhint");
 var webserver=require('gulp-webserver');
 var sass=require('gulp-sass');
@@ -32,6 +34,7 @@ gulp.task('watch',function(){
 
 gulp.task('hthint',function(){
   return gulp.src([config.path.src+'*.html',config.ignore.modules])
+      .pipe(cache('hthint'))
       .pipe(plumber({
             errorHandler: notify.onError("HTML lint error: <%= error.message %>")
           }))
@@ -40,7 +43,8 @@ gulp.task('hthint',function(){
       // .pipe(htmlhint.failReporter())
 });
 gulp.task('jshint',function(){
-  return gulp.src([config.path.src+'/*.js',config.ignore.modules])
+  return gulp.src([config.path.src+'*.js',config.ignore.modules])
+      .pipe(cache('jshint'))
       .pipe(plumber({
         errorHandler: notify.onError("JS lint error: <%= error.message %>")
       }))
@@ -49,7 +53,8 @@ gulp.task('jshint',function(){
       .pipe(jshint.reporter('fail'));
 });
 gulp.task('sass',function(){
-  return gulp.src(config.path.src+'/*.scss')
+  return gulp.src(config.path.src+'*.scss')
+      .pipe(cache('sass'))
       .pipe(plumber({
             errorHandler: notify.onError("CSS error: <%= error.message %>")
           }))
