@@ -219,7 +219,8 @@ body{
   width:60px;}
 
 #content form input[type="submit"]:disabled{
-  background:#666;}
+  background:#666;
+  cursor:default;}
 
 #todoList{
   margin-top:10px;}
