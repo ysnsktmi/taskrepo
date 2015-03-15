@@ -13,14 +13,8 @@
       <input type="submit" value="add" data-bind="addTodo" />
     </form>
     <div id="todoList">
-      <span class="counter">items </span><span class="archive redLink">archive</span>
-      <ul>
-        <li class="todoItem">
-          <input type="checkbox"/>
-          <span class="summary"></span>
-          <span class="delete redLink">delete</span>
-        </li>
-      </ul>
+      <span class="counter"><!--$bind="counter" -->items </span><span class="archive redLink">archive</span>
+      <ul data-bind="todoList"></ul>
     </div>
   </div>
   <script src="jquery-1.11.2.min.js" type="text/javascript" charset="utf-8"></script>
