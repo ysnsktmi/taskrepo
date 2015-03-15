@@ -6,6 +6,10 @@ body {
     color: #666666;
 }
 
+li{
+    list-style: none;
+}
+
 #content {
     width: 520px;
     margin-top: 50px;
@@ -24,26 +28,36 @@ body {
 }
 
 #content form input[type="text"] {
-    width: 100%;
+    // width: 100%;
     height: 25px;
     border: 1px solid #bdc7d8;
     padding-left: 4px;
 }
 
-#content form input[type="submit"] {
-    position: absolute;
-    top: 0;
-    right: 0;
+.button-add{
+    // position: absolute;
+    // top: 0;
+    // right: 0;
+    // display: block;
+    // float: right;
     height: 27px;
-    width: 60px;
+    // width: 60px;
     margin: 10px 10px 0 0;
     border: 0;
     background: #4169e1;
     color: #fff;
-    font-weight: 600;
+    font-size:14px;
+    font-weight: 300;
     cursor: pointer;
 }
 
+#content form input[type="submit"] {
+    @extend .button-add;
+}
+
+button{
+    @extend .button-add;
+}
 #content form input[type="submit"]:disabled {
     background: #666;
     cursor: default;
@@ -58,8 +72,14 @@ body {
     margin-right: 5px;
 }
 
-#todoList .doneItem span.summary {
+.strike{
     text-decoration: line-through;
+}
+#todoList .doneItem span.summary {
+    @extend .strike;
+}
+.done{
+    @extend .strike;
 }
 
 #todoList ul {
