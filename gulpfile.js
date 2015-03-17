@@ -4,11 +4,14 @@ var notify=require('gulp-notify');
 var cache=require('gulp-cached');
 
 var jshint=require('gulp-jshint');
+var stylish=require('jshint-stylish');
 var htmlhint=require("gulp-htmlhint");
 var webserver=require('gulp-webserver');
 var sass=require('gulp-sass');
 var csscomb=require('gulp-csscomb');
 var csslint=require('gulp-csslint');
+
+var react=require('gulp-react');
 
 var config={
   path:{
@@ -16,7 +19,8 @@ var config={
     build:'build/'
   },
   ignore:{
-    modules:'!./node_modules/**'
+    modules:'!./node_modules/**',
+    libs:['!**/^jquery*.js','!**/^knockout*.js','!**/^react*.js']
   }
 }
 
@@ -49,7 +53,7 @@ gulp.task('jshint',function(){
         errorHandler: notify.onError("JS lint error: <%= error.message %>")
       }))
       .pipe(jshint())
-      .pipe(jshint.reporter('default'))
+      .pipe(jshint.reporter(stylish))
       .pipe(jshint.reporter('fail'));
 });
 gulp.task('sass',function(){
@@ -71,4 +75,10 @@ gulp.task('serve',function(){
         directoryListing: false,
         open: true
       }));
+});
+
+gulp.task('jsx',function(){
+  return gulp.src([config.path.src+'**/*.jsx',config.ignore.modules])
+      .pipe(react())
+      .pipe(gulp.dest(config.path.build));
 });
